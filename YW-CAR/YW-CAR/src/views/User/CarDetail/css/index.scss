@@ -1,0 +1,105 @@
+
+// 头图导航
+.header{
+  position: sticky;
+  z-index: 99;
+  top: 0;
+  .van-nav-bar {
+    background-color: #e54400;
+  }
+  .van-hairline--bottom:after {
+    border-bottom-width: 0;
+  }
+  input {
+    border: 0;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 14px;
+  }
+  .header_wz {
+    font-size: 18px;
+    color: white;
+  }
+}
+
+.detail{
+  position: relative;
+  .detailbg {
+    width: 100%;
+    img {
+      margin-top: -5px;
+      width: 100%;
+    }
+    .dbx {
+      width: 96%;
+      left: 2%;
+      position: absolute;
+      top: 20px;
+      .priceinfo {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        padding: 15px 0;
+        .price {
+          padding: 0 15px;
+          font-size: 26px;
+          color: red;
+          span {
+            font-size: 15px;
+            color: #8b8b8b;
+            margin-left: 20px;
+            text-decoration: line-through;
+          }
+        }
+         .dec {
+          margin-top: 15px;
+          background-color: #fff1ee;
+          color: #ff4d18;
+          padding-left: 15px;
+          img {
+            width: 15px;
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+  
+  }
+  .content {
+    border-radius: 20px;
+    width: 96%;
+    left: 2%;
+    position: absolute;
+    top: 130px;
+    background-color: rgb(255, 255, 255);
+    .innerbox{
+      .name {
+        padding: 10px;
+        font-size: 22px;
+      }
+     
+    }
+
+  }
+  .carimglist {
+    margin-top:160px;
+    img{
+      width: 100%;
+    }
+  }
+}
+
+
+
+/* 宫格 */
+.top {
+  font-size: 16px;
+  color: #8f8f8f;
+  margin-bottom: 10px;
+}
+
+
+
+.my-swipe .van-swipe-item img {
+  width: 100%;
+}

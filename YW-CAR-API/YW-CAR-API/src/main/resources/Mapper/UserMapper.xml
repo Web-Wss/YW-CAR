@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ywcarapi.dao.UserMapper">
+
+    <!--    //    获取汽车列表
+        List<Car> GetCarList();-->
+    <select id="GetCarList" resultType="Car">
+        SELECT * FROM yw_car
+    </select>
+
+
+    <!--    //    获取联系方式
+        List<Lxfs> GetLxfs();-->
+    <select id="GetLxfs" resultType="Lxfs">
+        select * from yw_lxfs
+    </select>
+
+
+<!--    //    根据筛选id获取车辆列表
+    List<Car>GetSxCarList(@Param("sxId")Integer sxId);
+-->
+    <select id="GetSxCarList" resultType="Car">
+        <if test="sxId == 2">
+            SELECT * FROM yw_car where car_is_mb = 1
+        </if>
+        <if test="sxId == 3">
+            SELECT * FROM yw_car WHERE car_price &lt; 100
+        </if>
+        <if test="sxId == 4">
+            SELECT * FROM yw_car WHERE car_bsx = "手动"
+        </if>
+        <if test="sxId == 5">
+            SELECT * FROM yw_car WHERE car_price >= 100 AND car_price &lt; 500
+        </if>
+        <if test="sxId == 6">
+            SELECT * FROM yw_car WHERE car_price >= 500 AND car_price &lt; 1000
+        </if>
+        <if test="sxId == 7">
+            SELECT * FROM yw_car WHERE car_price >= 1000 AND car_price &lt; 2000
+        </if>
+        <if test="sxId == 8">
+            SELECT * FROM yw_car WHERE car_price >= 2000
+        </if>
+    </select>
+
+
+<!--    //    模糊搜索
+    List<Car>SearchCar(@Param("search")String search);-->
+    <select id="SearchCar" resultType="Car">
+        SELECT * FROM yw_car WHERE car_brand LIKE concat('%',#{search},'%')
+        OR car_series LIKE concat('%',#{search},'%')
+    </select>
+
+
+
+
+    <!--    //    根据车辆id获取车辆详情
+        Car getCarDetail(@Param("carId")Integer carId);-->
+    <resultMap id="GetCarInfoByCarIdMap" type="Car">
+        <id property="carId" column="car_id"></id>
+        <result property="carBrand" column="car_brand"></result>
+        <result property="carSeries" column="car_series"></result>
+        <result property="carYear" column="car_year"></result>
+        <result property="carPl" column="car_pl"></result>
+        <result property="carOil" column="car_oil"></result>
+        <result property="carBsx" column="car_bsx"></result>
+        <result property="carPf" column="car_pf"></result>
+        <result property="carSpTime" column="car_sp_time"></result>
+        <result property="carKm" column="car_km"></result>
+        <result property="carAddress" column="car_address"></result>
+        <result property="carPrice" column="car_price"></result>
+        <result property="carOldPrice" column="car_old_price"></result>
+        <result property="carInsureTime" column="car_insure_time"></result>
+        <result property="carImg" column="car_img"></result>
+        <result property="carIsMb" column="car_is_mb"></result>
+
+        <collection property="carImgList" ofType="CarImg">
+            <id property="carImgId" column="car_img_id"></id>
+            <result property="carId" column="car_id"></result>
+            <result property="carImgPath" column="car_img_path"></result>
+        </collection>
+    </resultMap>
+    <select id="getCarDetail" resultMap="GetCarInfoByCarIdMap">
+        SELECT * FROM yw_car  c
+        LEFT JOIN yw_car_img i ON c.`car_id` = i.`car_id`
+        where c.car_id = #{carId}
+    </select>
+
+
+
+
+
+</mapper>

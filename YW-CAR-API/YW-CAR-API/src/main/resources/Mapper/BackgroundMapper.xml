@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ywcarapi.dao.BackgroundMapper">
+
+<!--    //    车辆入库
+    Integer AddCar(Car car);-->
+    <insert id="AddCar" parameterType="Car" useGeneratedKeys="true" keyProperty="carId">
+        INSERT INTO yw_car(car_brand,car_series,car_year,car_pl,car_oil,car_bsx,car_pf,car_sp_time,car_km,car_address,car_price,car_old_price,car_insure_time,car_img,car_is_mb)
+        VALUES(#{carBrand},#{carSeries},#{carYear},#{carPl},#{carOil},#{carBsx},#{carPf},#{carSpTime},#{carKm},#{carAddress},#{carPrice},#{carOldPrice},#{carInsureTime},#{carImg},#{carIsMb})
+    </insert>
+<!--    //    车辆其他图片
+    Integer AddCarImg(CarImg carImg);-->
+    <insert id="AddCarImg" parameterType="CarImg">
+        INSERT INTO yw_car_img(car_id,car_img_path)
+        values (#{carId},#{carImgPath})
+    </insert>
+
+
+<!--        //    修改汽车信息
+    Integer EditCarInfo(Car car);-->
+    <update id="EditCarInfo">
+        UPDATE yw_car SET car_brand = #{carBrand},
+                          car_series = #{carSeries},
+                          car_year = #{carYear},
+                          car_pl = #{carPl},
+                          car_oil = #{carOil},
+                          car_bsx = #{carBsx},
+                          car_pf = #{carPf},
+                          car_sp_time = #{carSpTime},
+                          car_km = #{carKm},
+                          car_address = #{carAddress},
+                          car_price = #{carPrice},
+                          car_old_price = #{carOldPrice},
+                          car_insure_time = #{carInsureTime},
+                          car_is_mb=#{carIsMb}
+        WHERE car_id = #{carId}
+    </update>
+
+<!--    //    获取汽车列表
+    List<Car> GetCarList();-->
+    <select id="GetCarList" resultType="Car">
+        SELECT * FROM yw_car
+    </select>
+
+    <!--    //    删除汽车
+    //    根据汽车id获取汽车正脸图片地址
+        String GetCarImgPathByCarId(Integer carId);-->
+    <select id="GetCarImgPathByCarId" resultType="String">
+        SELECT car_img FROM yw_car WHERE car_id = #{carId}
+    </select>
+    <!--//    根据汽车id获取汽车其他图片地址
+        List<CarImg> GetCarOtherImgPath(Integer carId);-->
+    <select id="GetCarOtherImgPath" resultType="CarImg">
+        SELECT * FROM yw_car_img WHERE car_id = #{carId}
+    </select>
+    <!--    //    删除本地数据库数据
+        Integer DeleteCarInfoByCarId(Integer carId);-->
+    <delete id="DeleteCarInfoByCarId">
+        DELETE FROM yw_car WHERE car_id = #{carId}
+    </delete>
+    <!--        Integer DeleteCarInfoByCarId1(Integer carId);-->
+    <delete id="DeleteCarInfoByCarId1">
+        DELETE FROM yw_car_img WHERE car_id = #{carId}
+    </delete>
+
+
+    <!--    //    修改联系方式
+    Integer EditLxfs(Lxfs lxfs);-->
+    <update id="EditLxfs">
+        UPDATE yw_lxfs SET NAME = #{name},tel=#{tel} where lxfs_id = #{lxfsId}
+    </update>
+
+<!--    //    添加联系方式
+    Integer AddLx(Lxfs lxfs);-->
+    <insert id="AddLx">
+        INSERT INTO yw_lxfs(NAME,tel)VALUES(#{name},#{tel})
+    </insert>
+
+<!--    //    删除联系人
+    Integer DeleteLx(@Param("lxId")Integer lxId);-->
+    <delete id="DeleteLx">
+        delete from yw_lxfs where lxfs_id = #{lxId}
+    </delete>
+
+</mapper>
