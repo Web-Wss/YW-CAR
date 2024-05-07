@@ -1,5 +1,3 @@
-# 更新中……
-
 # 文件介绍
 
 YW-CAR：项目前端代码
@@ -39,10 +37,10 @@ YW-CAR.sql：项目数据库文件
 
 # 部分图片展示
 
-<img src="C:\Users\admin\Desktop\YW-CAR\img\image-20240507161100180.png" alt="image-20240507161100180" style="zoom:50%;" />
+<img src="img\image-20240507161100180.png" alt="image-20240507161100180" style="zoom:50%;" />
 
-<img src="C:\Users\admin\Desktop\YW-CAR\img\image-20240507161121136.png" alt="image-20240507161121136" style="zoom:50%;" />
+<img src="img\image-20240507161121136.png" alt="image-20240507161121136" style="zoom:50%;" />
 
-<img src="C:\Users\admin\Desktop\YW-CAR\img\image-20240507161148271.png" alt="image-20240507161148271" style="zoom:50%;" />
+<img src="img\image-20240507161148271.png" alt="image-20240507161148271" style="zoom:50%;" />
 
-<img src="C:\Users\admin\Desktop\YW-CAR\img\image-20240507161207479.png" alt="image-20240507161207479" style="zoom:50%;" />
+<img src="img\image-20240507161207479.png" alt="image-20240507161207479" style="zoom:50%;" />
